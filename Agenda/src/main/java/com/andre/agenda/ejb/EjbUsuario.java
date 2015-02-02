@@ -1,5 +1,7 @@
 package com.andre.agenda.ejb;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -30,6 +32,12 @@ public class EjbUsuario implements IEjbUsuario {
 	@Override
 	public boolean insert() {
 		try{
+			SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");
+			
+			String fechaActual = sf.format(new Date());
+			
+			usuario.setFecharegistro(new Date(fechaActual));
+			usuario.setFechamodificacion(new Date(fechaActual));
 			
 			IDaoUsuario daoUsuario = new DaoUsuario();
 			
